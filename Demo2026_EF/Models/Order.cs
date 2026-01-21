@@ -21,7 +21,7 @@ namespace Demo2026_EF.Models
         public Punkt? Punkt { get; set; }
 
         public int? UserId { get; set; }
-        public User? User { get; set; }
+        public User? User { get; set; }//
 
         public int? CodeReciever { get; set; }
         public string? Status { get; set; }
