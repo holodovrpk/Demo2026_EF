@@ -5,8 +5,30 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Demo2026_EF"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
-
-    </Grid>
+        Title="MainWindow" Height="450" Width="800" Background="#FFFFFF">
+    <StackPanel>
+        <ScrollViewer Height="400">
+               <ItemsControl x:Name="ProductsList" Width="750">
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Orientation="Horizontal" Background="#7FFF00" Margin="5">
+                            <StackPanel Background="#7FFF00">
+                                <Image Source="{Binding Photo}" Width="230" Height="200" Margin="5"/>
+                            </StackPanel>
+                            <StackPanel Width="320">
+                                <TextBlock Text="Контент" />
+                            </StackPanel>
+                            <StackPanel Width="160" Height="200" Margin="5" Background="#00FA9A">
+                                <TextBlock Text="Скидка" FontSize="35" TextAlignment="Center" />
+                                <TextBlock Text="{Binding Discount}" FontSize="90" TextAlignment="Center" />
+                            </StackPanel>
+                        </StackPanel>
+                        
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+        </ScrollViewer>
+        
+        
+    </StackPanel>
 </Window>
