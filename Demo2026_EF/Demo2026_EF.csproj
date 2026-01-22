@@ -19,6 +19,7 @@
     <None Remove="7.jpg" />
     <None Remove="8.jpg" />
     <None Remove="9.jpg" />
+    <None Remove="Icon.png" />
     <None Remove="picture.png" />
   </ItemGroup>
 
@@ -42,6 +43,7 @@
     <Resource Include="7.jpg" />
     <Resource Include="8.jpg" />
     <Resource Include="9.jpg" />
+    <Resource Include="Icon.png" />
     <Resource Include="picture.png" />
   </ItemGroup>
 

@@ -5,8 +5,14 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Demo2026_EF"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800" Background="#FFFFFF">
+        Title="MainWindow" Height="600" Width="800" Background="#FFFFFF">
     <StackPanel>
+        <StackPanel HorizontalAlignment="Left" Orientation="Horizontal">
+            <Image Source="Icon.png" Height="80" Margin="10"/>
+            <TextBlock Text="ООО «Обувь»" Margin="10" FontSize="55" FontWeight="Black" Foreground="#00FA9A"/>
+            
+        </StackPanel>
+
         <ScrollViewer Height="400">
                <ItemsControl x:Name="ProductsList" Width="750">
                 <ItemsControl.ItemTemplate>
@@ -15,12 +21,22 @@
                             <StackPanel Background="#7FFF00">
                                 <Image Source="{Binding Photo}" Width="230" Height="200" Margin="5"/>
                             </StackPanel>
-                            <StackPanel Width="320">
-                                <TextBlock Text="Контент" />
+                            <StackPanel Width="320" Margin ="5">
+                                <StackPanel Orientation="Horizontal" Margin="0,0,0,8">
+                                    <TextBlock Text="{Binding Category}" FontSize="18" FontWeight="Bold"/>
+                                    <TextBlock Text=" | " FontSize="18" FontWeight="Bold"/>
+                                    <TextBlock Text="{Binding Name}" FontSize="18" FontWeight="Bold"/>
+                                </StackPanel>
+                                <TextBlock Text="{Binding Description, StringFormat=Описание товара: {0}}"  TextWrapping="Wrap" Margin="0,0,0,8"/>
+                                <TextBlock Text="{Binding Manufacturer, StringFormat=Производитель: {0}}" Margin="0,0,0,8"/>
+                                <TextBlock Text="{Binding Supplier, StringFormat=Поставщик: {0}}" Margin="0,0,0,8"/>
+                                <TextBlock Text="{Binding Price, StringFormat=Цена: {0} руб.}" Margin="0,0,0,8"/>
+                                <TextBlock Text="{Binding Unit, StringFormat=Единица измерения: {0}}" Margin="0,0,0,8"/>
+                                <TextBlock Text="{Binding Count, StringFormat=Количество на складе: {0}}" />
                             </StackPanel>
                             <StackPanel Width="160" Height="200" Margin="5" Background="#00FA9A">
-                                <TextBlock Text="Скидка" FontSize="35" TextAlignment="Center" />
-                                <TextBlock Text="{Binding Discount}" FontSize="90" TextAlignment="Center" />
+                                <TextBlock Text="Скидка (%)" FontSize="30" TextAlignment="Center" />
+                                <TextBlock Text="{Binding Discount}" FontSize="90" TextAlignment="Center" FontWeight="Black"/>
                             </StackPanel>
                         </StackPanel>
                         
@@ -28,7 +44,11 @@
                 </ItemsControl.ItemTemplate>
             </ItemsControl>
         </ScrollViewer>
-        
+
+        <StackPanel Margin="20" Orientation="Horizontal">
+            <Button Content="Добавить товар" Width="200" Margin="5"/>
+            <Button Content="Заказы" Width="200" Margin="5"/>
+        </StackPanel>
         
     </StackPanel>
 </Window>
