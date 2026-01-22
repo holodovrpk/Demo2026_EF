@@ -40,6 +40,7 @@ namespace Demo2026_EF
             }
 
             MainWindow w = new MainWindow();
+            w.txtUser.Text = user.FIO;
             w.Show();
 
             this.Close();

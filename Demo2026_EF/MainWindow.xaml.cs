@@ -31,5 +31,17 @@ namespace Demo2026_EF
             products = db.Products.Local.ToObservableCollection();
             ProductsList.ItemsSource = products;
         }
+
+        private void AddProduct_Click(object sender, RoutedEventArgs e)
+        {
+            Product p = new Product();
+            AddProductWindow w = new AddProductWindow();
+            w.DataContext = p;
+            w.ShowDialog();
+            if (w.DialogResult == true)
+            {
+                products.Add(p);
+            }
+        }
     }
 }

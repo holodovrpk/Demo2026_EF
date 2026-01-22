@@ -10,7 +10,7 @@
         <StackPanel HorizontalAlignment="Left" Orientation="Horizontal">
             <Image Source="Icon.png" Height="80" Margin="10"/>
             <TextBlock Text="ООО «Обувь»" Margin="10" FontSize="55" FontWeight="Black" Foreground="#00FA9A"/>
-            
+            <TextBlock x:Name="txtUser" FontSize="14"/>
         </StackPanel>
 
         <ScrollViewer Height="400">
@@ -46,7 +46,7 @@
         </ScrollViewer>
 
         <StackPanel Margin="20" Orientation="Horizontal">
-            <Button Content="Добавить товар" Width="200" Margin="5"/>
+            <Button Content="Добавить товар" Width="200" Margin="5" Click="AddProduct_Click"/>
             <Button Content="Заказы" Width="200" Margin="5"/>
         </StackPanel>
         

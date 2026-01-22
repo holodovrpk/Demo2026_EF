@@ -1,0 +1,46 @@
+﻿<Window x:Class="Demo2026_EF.AddProductWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Demo2026_EF"
+        mc:Ignorable="d"
+        Title="AddProductWindow" Height="450" Width="800">
+    <StackPanel Width="400">
+        <TextBlock Text="Артикул: " />
+        <TextBox Text="{Binding Artikul}" />
+
+        <TextBlock Text="Название: " />
+        <TextBox Text="{Binding Name}" />
+
+        <TextBlock Text="Единица измерения: " />
+        <TextBox Text="{Binding Unit}" />
+
+        <TextBlock Text="Цена: " />
+        <TextBox Text="{Binding Price}" />
+
+        <TextBlock Text="Поставщик: " />
+        <TextBox Text="{Binding Supplier}" />
+
+        <TextBlock Text="Производитель: " />
+        <TextBox Text="{Binding Manufacturer}" />
+
+        <TextBlock Text="Категория: " />
+        <TextBox Text="{Binding Category}" />
+
+        <TextBlock Text="Скидка: " />
+        <TextBox Text="{Binding Discount}" />
+
+        <TextBlock Text="Количество на складе: " />
+        <TextBox Text="{Binding Count}" />
+
+        <TextBlock Text="Описание: " />
+        <TextBox Text="{Binding Description}" />
+
+        <TextBlock Text="Фото: " />
+        <TextBox Text="{Binding Photo}" />
+
+        <Button Content="Сохранить" Click="Save_Click"/>
+
+    </StackPanel>
+</Window>
