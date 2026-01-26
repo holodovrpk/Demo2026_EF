@@ -41,7 +41,25 @@ namespace Demo2026_EF
             if (w.DialogResult == true)
             {
                 products.Add(p);
+                db.SaveChanges(); }
+        }
+
+        private void Edit_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            if ((sender as StackPanel).DataContext is Product p)
+            {
+                AddProductWindow w = new AddProductWindow();
+                w.DataContext = p;
+                w.ShowDialog();
+
+                db.SaveChanges();
             }
+        }
+
+        private void Orders_Click(object sender, RoutedEventArgs e)
+        {
+            OrderWindow w = new OrderWindow();
+            w.ShowDialog();
         }
     }
 }

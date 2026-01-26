@@ -17,7 +17,7 @@
                <ItemsControl x:Name="ProductsList" Width="750">
                 <ItemsControl.ItemTemplate>
                     <DataTemplate>
-                        <StackPanel Orientation="Horizontal" Background="#7FFF00" Margin="5">
+                        <StackPanel Orientation="Horizontal" Background="#7FFF00" Margin="5" MouseDown="Edit_MouseDown">
                             <StackPanel Background="#7FFF00">
                                 <Image Source="{Binding Photo}" Width="230" Height="200" Margin="5"/>
                             </StackPanel>
@@ -47,7 +47,7 @@
 
         <StackPanel Margin="20" Orientation="Horizontal">
             <Button Content="Добавить товар" Width="200" Margin="5" Click="AddProduct_Click"/>
-            <Button Content="Заказы" Width="200" Margin="5"/>
+            <Button Content="Заказы" Width="200" Margin="5" Click="Orders_Click"/>
         </StackPanel>
         
     </StackPanel>

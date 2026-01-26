@@ -1,0 +1,39 @@
+﻿<Window x:Class="Demo2026_EF.OrderWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Demo2026_EF"
+        mc:Ignorable="d"
+        Title="OrderWindow" Height="450" Width="800">
+    <StackPanel>
+        <ScrollViewer Height="300">
+            <ItemsControl x:Name="OrdersList" Width="750">
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Orientation="Horizontal" Background="#7FFF00" Margin="5" >
+                            
+                            <StackPanel Width="520" Margin ="5">
+                                <TextBlock Text="{Binding OrderId, StringFormat=Артикул заказа: {0}}" Margin="0,0,0,8"/>
+                                <TextBlock Text="{Binding Status, StringFormat=Статус заказа: {0}}" Margin="0,0,0,8"/>
+                                <TextBlock Text="{Binding Punkt.Adres, StringFormat=Адрес пункта выдачи: {0}}" Margin="0,0,0,8"/>
+                                <TextBlock Text="{Binding DateOrder, StringFormat=Дата заказа: {0}}" Margin="0,0,0,8"/>
+                            </StackPanel>
+                            <StackPanel Width="190" Height="130" Margin="5" Background="#00FA9A">
+                                <TextBlock Text="Дата доставки" FontSize="20" TextAlignment="Center" />
+                                <TextBlock Text="{Binding Delivery}" FontSize="26" TextAlignment="Center" FontWeight="Black" TextWrapping="Wrap"/>
+                            </StackPanel>
+                        </StackPanel>
+
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+        </ScrollViewer>
+
+        <StackPanel Margin="20" Orientation="Horizontal">
+            <Button Content="Добавить заказ" Width="200" Margin="5"/>
+            
+        </StackPanel>
+
+    </StackPanel>
+</Window>
