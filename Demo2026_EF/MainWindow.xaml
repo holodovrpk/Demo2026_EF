@@ -13,7 +13,7 @@
             <TextBlock x:Name="txtUser" FontSize="14"/>
         </StackPanel>
 
-        <ScrollViewer Height="400">
+        <ScrollViewer Height="350">
                <ItemsControl x:Name="ProductsList" Width="750">
                 <ItemsControl.ItemTemplate>
                     <DataTemplate>
@@ -49,7 +49,13 @@
             <TextBlock Text="Поиск" Margin="10"/>
             <TextBox x:Name="txtSearch" Width="200" Margin="10" TextChanged="txtSearch_TextChanged"/>
         </StackPanel>
-        
+
+        <StackPanel Orientation="Horizontal" Background="#00FA9A">
+            <TextBlock Text="Сортировка по количествеу на складе" Margin="10"/>
+            <Button Content="По возрастанию" Margin="10" Click="Asc_Click"/>
+            <Button Content="По убыванию" Margin="10" Click="Desc_Click" />
+        </StackPanel>
+
         <StackPanel Margin="20" Orientation="Horizontal">
             <Button Content="Добавить товар" Width="200" Margin="5" Click="AddProduct_Click"/>
             <Button Content="Заказы" Width="200" Margin="5" Click="Orders_Click"/>

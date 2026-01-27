@@ -21,7 +21,7 @@ namespace Demo2026_EF
     {
         Demo2026_EFContext db = new Demo2026_EFContext();
 
-        ObservableCollection<Product> products = new ObservableCollection<Product>();
+        ObservableCollection<Product>? products = new ObservableCollection<Product>();
 
         public MainWindow()
         {
@@ -77,6 +77,22 @@ namespace Demo2026_EF
              
             ProductsList.ItemsSource = list;
            
+        }
+
+        private void Asc_Click(object sender, RoutedEventArgs e)
+        {
+            products = new ObservableCollection<Product>(
+                products.OrderBy(p => p.Count)
+                );
+            ProductsList.ItemsSource = products;
+        }
+
+        private void Desc_Click(object sender, RoutedEventArgs e)
+        {
+            products = new ObservableCollection<Product>(
+                products.OrderByDescending(p => p.Count)
+                );
+            ProductsList.ItemsSource = products;
         }
     }
 }
