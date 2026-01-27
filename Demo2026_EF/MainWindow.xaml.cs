@@ -74,7 +74,7 @@ namespace Demo2026_EF
                 p.Description.Contains(txtSearch.Text, StringComparison.OrdinalIgnoreCase) ||
                 p.Manufacturer.Contains(txtSearch.Text, StringComparison.OrdinalIgnoreCase)
                 ).ToList();
-
+             
             ProductsList.ItemsSource = list;
            
         }
