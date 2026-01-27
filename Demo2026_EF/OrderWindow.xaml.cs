@@ -33,7 +33,27 @@ namespace Demo2026_EF
             orders = db.Orders.Local.ToObservableCollection();
 
             OrdersList.ItemsSource = orders;
+            
 
+        }
+
+        private void Add_Click(object sender, RoutedEventArgs e)
+        {
+            Order o = new Order();
+            AddOrderWindow w = new AddOrderWindow();
+            
+            w.ListUser.ItemsSource = db.Users.ToList();
+            w.ListPunkt.ItemsSource = db.Punkt.ToList();
+            w.ListProduct.ItemsSource = db.Products.ToList();
+
+            w.DataContext = o;
+
+
+            if (w.ShowDialog() == true)
+            {
+                orders.Add(o);
+                db.SaveChanges();
+            }
         }
     }
 }

@@ -1,0 +1,47 @@
+﻿<Window x:Class="Demo2026_EF.AddOrderWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Demo2026_EF"
+        mc:Ignorable="d"
+        Title="AddOrderWindow" Height="450" Width="800">
+    <StackPanel Width="400">
+        <TextBlock Text="Товар: " />
+        <ComboBox x:Name="ListProduct"
+                  DisplayMemberPath="Name"
+                  SelectedValuePath="ProductId"
+                  SelectedValue="{Binding ProductId}"/>
+
+        <TextBlock Text="Количество товара: " />
+        <TextBox Text="{Binding Count}" />
+
+        <TextBlock Text="Дата заказа: " />
+        <DatePicker SelectedDate="{Binding DateOrder}" />
+
+        <TextBlock Text="Дата доставки: " />
+        <DatePicker SelectedDate="{Binding Delivery}" />
+
+        <TextBlock Text="Пункт выдачи: " />
+        <ComboBox x:Name="ListPunkt"
+          DisplayMemberPath="Adres"
+          SelectedValuePath="PunktId"
+          SelectedValue="{Binding PunktId}"/>
+
+        <TextBlock Text="Покупатель: " />
+        <ComboBox x:Name="ListUser"
+            DisplayMemberPath="FIO"
+            SelectedValuePath="UserId"
+            SelectedValue="{Binding UserId}"/>
+
+        <TextBlock Text="Код получения: " />
+        <TextBox Text="{Binding CodeReciever}" />
+
+        <TextBlock Text="Статус: " />
+        <TextBox Text="{Binding Status}" />
+
+        
+        <Button Content="Сохранить" Click="Save_Click"/>
+
+    </StackPanel>
+</Window>
