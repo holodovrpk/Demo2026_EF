@@ -61,5 +61,22 @@ namespace Demo2026_EF
             OrderWindow w = new OrderWindow();
             w.ShowDialog();
         }
+
+        private void txtSearch_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (txtSearch.Text == "")
+            {
+                ProductsList.ItemsSource = products;
+            }
+
+            var list = products.Where(
+                p => p.Name.Contains(txtSearch.Text, StringComparison.OrdinalIgnoreCase) ||
+                p.Description.Contains(txtSearch.Text, StringComparison.OrdinalIgnoreCase) ||
+                p.Manufacturer.Contains(txtSearch.Text, StringComparison.OrdinalIgnoreCase)
+                ).ToList();
+
+            ProductsList.ItemsSource = list;
+           
+        }
     }
 }

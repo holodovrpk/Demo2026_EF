@@ -45,6 +45,11 @@
             </ItemsControl>
         </ScrollViewer>
 
+        <StackPanel Orientation="Horizontal" Background="#00FA9A">
+            <TextBlock Text="Поиск" Margin="10"/>
+            <TextBox x:Name="txtSearch" Width="200" Margin="10" TextChanged="txtSearch_TextChanged"/>
+        </StackPanel>
+        
         <StackPanel Margin="20" Orientation="Horizontal">
             <Button Content="Добавить товар" Width="200" Margin="5" Click="AddProduct_Click"/>
             <Button Content="Заказы" Width="200" Margin="5" Click="Orders_Click"/>

@@ -55,5 +55,22 @@ namespace Demo2026_EF
                 db.SaveChanges();
             }
         }
+
+        private void StackPanel_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            if((sender as StackPanel).DataContext is Order o)
+            {
+                AddOrderWindow w = new AddOrderWindow();
+                
+                w.ListUser.ItemsSource = db.Users.ToList();
+                w.ListPunkt.ItemsSource = db.Punkt.ToList();
+                w.ListProduct.ItemsSource = db.Products.ToList();
+
+                w.DataContext = o;
+                w.ShowDialog();
+
+                db.SaveChanges();
+            }
+        }
     }
 }
