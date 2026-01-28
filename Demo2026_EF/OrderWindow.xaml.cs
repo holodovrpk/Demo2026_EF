@@ -33,7 +33,11 @@ namespace Demo2026_EF
             orders = db.Orders.Local.ToObservableCollection();
 
             OrdersList.ItemsSource = orders;
-            
+
+            if (LoginUser.role == "Менеджер")
+            {
+                NoManager.Visibility = Visibility.Collapsed;
+            }
 
         }
 
@@ -58,7 +62,11 @@ namespace Demo2026_EF
 
         private void StackPanel_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            if((sender as StackPanel).DataContext is Order o)
+
+            if (LoginUser.role == "Менеджер")
+                return;
+
+            if ((sender as StackPanel).DataContext is Order o)
             {
                 AddOrderWindow w = new AddOrderWindow();
                 

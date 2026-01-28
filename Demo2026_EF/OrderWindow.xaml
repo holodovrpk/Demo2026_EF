@@ -31,7 +31,7 @@
         </ScrollViewer>
 
         <StackPanel Margin="20" Orientation="Horizontal">
-            <Button Content="Добавить заказ" Width="200" Margin="5" Click="Add_Click"/>
+            <Button x:Name="NoManager" Content="Добавить заказ" Width="200" Margin="5" Click="Add_Click"/>
 
         </StackPanel>
 

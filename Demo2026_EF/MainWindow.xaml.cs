@@ -30,6 +30,26 @@ namespace Demo2026_EF
             db.Products.Load();
             products = db.Products.Local.ToObservableCollection();
             ProductsList.ItemsSource = products;
+
+            List<string> cat = new List<string>();
+            cat.Add("Все категории");
+            cat.Add("Женская обувь");
+            cat.Add("Мужская обувь");
+            ListCategory.ItemsSource = cat;
+            ListCategory.SelectedIndex = 0;
+
+
+            txtUser.Text = LoginUser.name + "\n" + LoginUser.role;
+            if (LoginUser.role == "Авторизированный клиент")
+            {
+                NoClient.Visibility = Visibility.Collapsed;
+                this.Height = 500;
+            }
+            if (LoginUser.role == "Менеджер")
+            {
+                NoManager.Visibility = Visibility.Collapsed;
+            }
+
         }
 
         private void AddProduct_Click(object sender, RoutedEventArgs e)
@@ -46,7 +66,12 @@ namespace Demo2026_EF
 
         private void Edit_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            if ((sender as StackPanel).DataContext is Product p)
+            if (LoginUser.role == "Авторизированный клиент" ||
+                LoginUser.role == "Менеджер")
+                return;
+
+
+           if ((sender as StackPanel).DataContext is Product p)
             {
                 AddProductWindow w = new AddProductWindow();
                 w.DataContext = p;
@@ -76,7 +101,7 @@ namespace Demo2026_EF
                 ).ToList();
              
             ProductsList.ItemsSource = list;
-           
+            
         }
 
         private void Asc_Click(object sender, RoutedEventArgs e)
@@ -85,6 +110,8 @@ namespace Demo2026_EF
                 products.OrderBy(p => p.Count)
                 );
             ProductsList.ItemsSource = products;
+
+            
         }
 
         private void Desc_Click(object sender, RoutedEventArgs e)
@@ -93,6 +120,22 @@ namespace Demo2026_EF
                 products.OrderByDescending(p => p.Count)
                 );
             ProductsList.ItemsSource = products;
+        }
+
+        private void ListCategory_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (ListCategory.SelectedItem.ToString() == "Все категории")
+            {
+                ProductsList.ItemsSource = products;
+                return;
+            }
+
+            var list = products.Where(p => 
+            p.Category == ListCategory.SelectedItem.ToString()).ToList();
+
+            ProductsList.ItemsSource = list;
+
+   
         }
     }
 }

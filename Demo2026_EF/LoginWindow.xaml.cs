@@ -39,8 +39,13 @@ namespace Demo2026_EF
                 return;
             }
 
+            LoginUser.name = user.FIO;
+            LoginUser.role = user.Role;
+
             MainWindow w = new MainWindow();
-            w.txtUser.Text = user.FIO;
+           // w.txtUser.Text = user.FIO;
+            
+
             w.Show();
 
             this.Close();

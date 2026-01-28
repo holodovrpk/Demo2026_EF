@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Demo2026_EF"
         mc:Ignorable="d"
-        Title="MainWindow" Height="600" Width="800" Background="#FFFFFF">
+        Title="MainWindow" Height="650" Width="800" Background="#FFFFFF">
     <StackPanel>
         <StackPanel HorizontalAlignment="Left" Orientation="Horizontal">
             <Image Source="Icon.png" Height="80" Margin="10"/>
@@ -45,21 +45,31 @@
             </ItemsControl>
         </ScrollViewer>
 
-        <StackPanel Orientation="Horizontal" Background="#00FA9A">
-            <TextBlock Text="Поиск" Margin="10"/>
-            <TextBox x:Name="txtSearch" Width="200" Margin="10" TextChanged="txtSearch_TextChanged"/>
-        </StackPanel>
 
-        <StackPanel Orientation="Horizontal" Background="#00FA9A">
-            <TextBlock Text="Сортировка по количествеу на складе" Margin="10"/>
-            <Button Content="По возрастанию" Margin="10" Click="Asc_Click"/>
-            <Button Content="По убыванию" Margin="10" Click="Desc_Click" />
-        </StackPanel>
-
-        <StackPanel Margin="20" Orientation="Horizontal">
-            <Button Content="Добавить товар" Width="200" Margin="5" Click="AddProduct_Click"/>
-            <Button Content="Заказы" Width="200" Margin="5" Click="Orders_Click"/>
-        </StackPanel>
+        <StackPanel x:Name="NoClient">
         
+            <StackPanel Orientation="Horizontal" Background="#00FA9A">
+                <TextBlock Text="Поиск" Margin="10"/>
+                <TextBox x:Name="txtSearch" Width="200" Margin="10" TextChanged="txtSearch_TextChanged"/>
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal" Background="#00FA9A">
+                <TextBlock Text="Сортировка по количествеу на складе" Margin="10"/>
+                <Button Content="По возрастанию" Margin="10" Click="Asc_Click"/>
+                <Button Content="По убыванию" Margin="10" Click="Desc_Click" />
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal" Background="#00FA9A">
+                <TextBlock Text="Фильтрация по типу товара" Margin="10"/>
+                <ComboBox Name="ListCategory" Margin="10" SelectionChanged="ListCategory_SelectionChanged"/>
+            
+            </StackPanel>
+
+            <StackPanel Margin="20" Orientation="Horizontal">
+                <Button x:Name="NoManager" Content="Добавить товар" Width="200" Margin="5" Click="AddProduct_Click"/>
+                <Button Content="Заказы" Width="200" Margin="5" Click="Orders_Click"/>
+            </StackPanel>
+
+        </StackPanel>
     </StackPanel>
 </Window>
