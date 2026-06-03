@@ -11,17 +11,18 @@
             <ItemsControl x:Name="OrdersList" Width="750">
                 <ItemsControl.ItemTemplate>
                     <DataTemplate>
-                        <StackPanel Orientation="Horizontal" Background="#7FFF00" Margin="5" MouseDown="StackPanel_MouseDown">
+                        <StackPanel Orientation="Horizontal" Background="#00FFFF" Margin="5" MouseDown="StackPanel_MouseDown">
                             
                             <StackPanel Width="520" Margin ="5">
                                 <TextBlock Text="{Binding OrderId, StringFormat=Артикул заказа: {0}}" Margin="0,0,0,8"/>
-                                <TextBlock Text="{Binding Status, StringFormat=Статус заказа: {0}}" Margin="0,0,0,8"/>
-                                <TextBlock Text="{Binding Punkt.Adres, StringFormat=Адрес пункта выдачи: {0}}" Margin="0,0,0,8"/>
+                                <TextBlock Text="{Binding Status.StatusName, StringFormat=Статус заказа: {0}}" Margin="0,0,0,8"/>
+                                <TextBlock Text="{Binding Punkt.Adres, StringFormat=Адрес пункта выдачи: {0}}" TextWrapping="Wrap" Margin="0,0,0,8"/>
                                 <TextBlock Text="{Binding DateOrder, StringFormat=Дата заказа: {0}}" Margin="0,0,0,8"/>
+                                <Button Content="Удалить" Click="Del_Click"/>
                             </StackPanel>
-                            <StackPanel Width="190" Height="130" Margin="5" Background="#00FA9A">
+                            <StackPanel Width="190" Height="130" Margin="5" Background="#00FFFF">
                                 <TextBlock Text="Дата доставки" FontSize="20" TextAlignment="Center" />
-                                <TextBlock Text="{Binding Delivery}" FontSize="26" TextAlignment="Center" FontWeight="Black" TextWrapping="Wrap"/>
+                                <TextBlock Text="{Binding DateDelivery}" FontSize="26" TextAlignment="Center" FontWeight="Black" TextWrapping="Wrap"/>
                             </StackPanel>
                         </StackPanel>
 

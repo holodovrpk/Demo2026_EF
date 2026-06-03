@@ -28,7 +28,7 @@ namespace Demo2026_EF.Models
         public DateTime? DateOrder { get; set; }
 
         // Дата доставки заказа
-        public DateTime? Delivery { get; set; }
+        public DateTime? DateDelivery { get; set; }
 
         // Внешний ключ на пункт выдачи
         // Может быть null
@@ -48,8 +48,13 @@ namespace Demo2026_EF.Models
         // Может быть null
         public int? CodeReciever { get; set; }
 
-        // Статус заказа (например: "Новый", "В обработке", "Готов к выдаче")
+        // Статус заказа 
+        // Внешний ключ на статус
         // Может быть null
-        public string? Status { get; set; }
+        public int? StatusId { get; set; }
+
+        // Навигационное свойство — статус заказа
+        public Status? Status { get; set; }
+
     }
 }

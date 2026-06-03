@@ -5,12 +5,13 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Demo2026_EF"
         mc:Ignorable="d"
-        Title="LoginWindow" Height="200" Width="400">
+        Title="LoginWindow" Height="230" Width="400">
     <StackPanel Width="300">
         <TextBlock Text="Логин" Margin="5"/>
         <TextBox x:Name="txtLogin" Text="94d5ous@gmail.com" Margin="5"/>
         <TextBlock Text="Пароль" Margin="5"/>
         <TextBox x:Name="txtPass" Text="uzWC67" Margin="5" />
         <Button Content="Войти" Click="Login_Click" Margin="5"/>
+        <Button Content="Войти как гость" Click="Guest_Click" Margin="5"/>
     </StackPanel>
 </Window>

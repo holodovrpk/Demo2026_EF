@@ -40,9 +40,11 @@ namespace Demo2026_EF
 
             // Формируем список категорий вручную
             List<string> cat = new List<string>();
-            cat.Add("Все категории");
-            cat.Add("Женская обувь");
-            cat.Add("Мужская обувь");
+            cat.Add("Все диапазоны");
+            cat.Add("0-10,99%");
+            cat.Add("11-14,99%");
+            cat.Add("15%");
+   
 
             // Привязываем категории к ComboBox/ListBox категорий
             ListCategory.ItemsSource = cat;
@@ -51,10 +53,12 @@ namespace Demo2026_EF
             // Отображаем информацию о пользователе (имя и роль)
             txtUser.Text = LoginUser.name + "\n" + LoginUser.role;
 
+           
+
             // Если зашёл клиент — скрываем панель/элементы для не-клиента и уменьшаем окно
-            if (LoginUser.role == "Авторизированный клиент")
+            if (LoginUser.role == "Авторизированный клиент" || LoginUser.role == "Гость")
             {
-                NoClient.Visibility = Visibility.Collapsed; // скрываем блок, недоступный клиенту
+                NoClient.Visibility = Visibility.Collapsed; // скрываем блок, недоступный клиенту или гостю
                 this.Height = 500;                          // меняем высоту окна
             }
 
@@ -95,8 +99,7 @@ namespace Demo2026_EF
         private void Edit_MouseDown(object sender, MouseButtonEventArgs e)
         {
             // Ограничение прав: клиент и менеджер не могут редактировать товары
-            if (LoginUser.role == "Авторизированный клиент" ||
-                LoginUser.role == "Менеджер")
+            if (LoginUser.role != "Администратор")
                 return;
 
             // Пытаемся получить товар из DataContext элемента, по которому кликнули
@@ -165,18 +168,59 @@ namespace Demo2026_EF
         private void ListCategory_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             // Если выбрано "Все категории" — показываем весь список
-            if (ListCategory.SelectedItem.ToString() == "Все категории")
+            if (ListCategory.SelectedItem.ToString() == "Все диапазоны")
             {
                 ProductsList.ItemsSource = products;
                 return;
             }
 
+            List<Product> list = new List<Product>();
+
             // Фильтруем товары по выбранной категории
-            var list = products.Where(p =>
-                p.Category == ListCategory.SelectedItem.ToString()).ToList();
+            if (ListCategory.SelectedItem.ToString() == "0-10,99%")
+                list = products.Where(p => p.Discount <= 10.99).ToList();
+
+            if (ListCategory.SelectedItem.ToString() == "11-14,99%")
+                list = products.Where(p => p.Discount >= 11 && p.Discount <= 14.99).ToList();
+
+            if (ListCategory.SelectedItem.ToString() == "15%")
+                list = products.Where(p => p.Discount >= 15).ToList();
 
             // Отображаем результат фильтрации
             ProductsList.ItemsSource = list;
+        }
+
+        //удаление продукта 
+        private void Del_Click(object sender, RoutedEventArgs e)
+        {
+            // Ограничение прав: клиент и менеджер  и гость не могут удалять товар
+            if (LoginUser.role != "Администратор")
+                return;
+
+            // Пытаемся получить товар из DataContext элемента, по которому кликнули
+            if ((sender as Button).DataContext is Product p)
+            {
+                MessageBoxResult result = MessageBox.Show("Удалить товар?",
+                    "Удаление", MessageBoxButton.YesNo, MessageBoxImage.Question);
+
+                if (result == MessageBoxResult.Yes)
+                {
+                    // проверяем есль ли этот товар в таблице заказов
+                    // считаем количество заказов с этим id  товара
+                    int count = db.Orders.Count(x => x.ProductId == p.ProductId );
+                    if (count == 0) // если заказов с эти товаром = 0 то удаляем
+                    {
+                        products.Remove(p);
+                        db.SaveChanges();
+                        MessageBox.Show("Удаление выпонено!");
+                        return;
+                    }
+                    
+                    MessageBox.Show("Товар удалить невозможно!");
+                    
+                }
+                
+            }
         }
     }
 }

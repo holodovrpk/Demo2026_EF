@@ -21,7 +21,7 @@ namespace Demo2026_EF.Models
 
         // Наименование товара
         // Максимальная длина — 100 символов
-        [MaxLength(100)]
+        [MaxLength(150)]
         public string Name { get; set; }
 
         // Единица измерения (шт., кг, л и т.п.)
@@ -59,7 +59,7 @@ namespace Demo2026_EF.Models
         // Описание товара
         // Максимальная длина — 200 символов
         // Может быть null
-        [MaxLength(200)]
+        [MaxLength(1024)]
         public string? Description { get; set; }
 
         // Путь к изображению товара или имя файла

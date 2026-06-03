@@ -20,7 +20,7 @@
         <DatePicker SelectedDate="{Binding DateOrder}" />
 
         <TextBlock Text="Дата доставки: " />
-        <DatePicker SelectedDate="{Binding Delivery}" />
+        <DatePicker SelectedDate="{Binding DateDelivery}" />
 
         <TextBlock Text="Пункт выдачи: " />
         <ComboBox x:Name="ListPunkt"
@@ -38,9 +38,13 @@
         <TextBox Text="{Binding CodeReciever}" />
 
         <TextBlock Text="Статус: " />
-        <TextBox Text="{Binding Status}" />
+      
+        <ComboBox x:Name="ListStatus"
+            DisplayMemberPath="StatusName"
+            SelectedValuePath="StatusId"
+            SelectedValue="{Binding StatusId}"/>  
 
-        
+
         <Button Content="Сохранить" Click="Save_Click"/>
 
     </StackPanel>

@@ -5,27 +5,29 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Demo2026_EF"
         mc:Ignorable="d"
-        Title="MainWindow" Height="650" Width="800" Background="#FFFFFF">
+        Title="MainWindow" Height="680" Width="850" Background="#FFFFFF">
     <StackPanel>
         <StackPanel HorizontalAlignment="Left" Orientation="Horizontal">
-            <Image Source="Icon.png" Height="80" Margin="10"/>
-            <TextBlock Text="ООО «Обувь»" Margin="10" FontSize="55" FontWeight="Black" Foreground="#00FA9A"/>
-            <TextBlock x:Name="txtUser" FontSize="14"/>
+            <Image Source="icon.png" Height="80" Margin="10"/>
+            <TextBlock Text="ООО «МебельОрг»" Margin="10" FontSize="40" FontWeight="Black" Foreground="#0000FF"/>
+            <TextBlock x:Name="txtUser" FontSize="14" Foreground="#0000FF"/>
         </StackPanel>
 
+
         <ScrollViewer Height="350">
-               <ItemsControl x:Name="ProductsList" Width="750">
+               <ItemsControl x:Name="ProductsList" Width="800">
                 <ItemsControl.ItemTemplate>
                     <DataTemplate>
-                        <StackPanel Orientation="Horizontal" Background="#7FFF00" Margin="5" MouseDown="Edit_MouseDown">
-                            <StackPanel Background="#7FFF00">
-                                <Image Source="{Binding Photo}" Width="230" Height="200" Margin="5"/>
+                        <StackPanel Orientation="Horizontal" Background="#00FFFF" Margin="5" MouseDown="Edit_MouseDown">
+                            <StackPanel Background="#00FFFF">
+                                <Image Source="{Binding Photo}" Width="180" Margin="5"/>
+                                <Button Content="Удалить" Click="Del_Click" />
                             </StackPanel>
-                            <StackPanel Width="320" Margin ="5">
+                            <StackPanel Width="420" Margin ="5">
                                 <StackPanel Orientation="Horizontal" Margin="0,0,0,8">
-                                    <TextBlock Text="{Binding Category}" FontSize="18" FontWeight="Bold"/>
-                                    <TextBlock Text=" | " FontSize="18" FontWeight="Bold"/>
-                                    <TextBlock Text="{Binding Name}" FontSize="18" FontWeight="Bold"/>
+                                    <TextBlock Text="{Binding Category}" FontSize="16" FontWeight="Bold"/>
+                                    <TextBlock Text=" | " FontSize="16" FontWeight="Bold"/>
+                                    <TextBlock Text="{Binding Name}" FontSize="16" FontWeight="Bold"/>
                                 </StackPanel>
                                 <TextBlock Text="{Binding Description, StringFormat=Описание товара: {0}}"  TextWrapping="Wrap" Margin="0,0,0,8"/>
                                 <TextBlock Text="{Binding Manufacturer, StringFormat=Производитель: {0}}" Margin="0,0,0,8"/>
@@ -34,7 +36,7 @@
                                 <TextBlock Text="{Binding Unit, StringFormat=Единица измерения: {0}}" Margin="0,0,0,8"/>
                                 <TextBlock Text="{Binding Count, StringFormat=Количество на складе: {0}}" />
                             </StackPanel>
-                            <StackPanel Width="160" Height="200" Margin="5" Background="#00FA9A">
+                            <StackPanel Width="160" Height="200" Margin="5" Background="#00FFFF">
                                 <TextBlock Text="Скидка (%)" FontSize="30" TextAlignment="Center" />
                                 <TextBlock Text="{Binding Discount}" FontSize="90" TextAlignment="Center" FontWeight="Black"/>
                             </StackPanel>
@@ -46,20 +48,20 @@
         </ScrollViewer>
 
 
-        <StackPanel x:Name="NoClient">
-        
-            <StackPanel Orientation="Horizontal" Background="#00FA9A">
+        <StackPanel x:Name="NoClient" Margin="0,20,0,0">
+
+            <StackPanel Orientation="Horizontal" Background="#00FFFF">
                 <TextBlock Text="Поиск" Margin="10"/>
                 <TextBox x:Name="txtSearch" Width="200" Margin="10" TextChanged="txtSearch_TextChanged"/>
             </StackPanel>
 
-            <StackPanel Orientation="Horizontal" Background="#00FA9A">
+            <StackPanel Orientation="Horizontal" Background="#00FFFF">
                 <TextBlock Text="Сортировка по количествеу на складе" Margin="10"/>
                 <Button Content="По возрастанию" Margin="10" Click="Asc_Click"/>
                 <Button Content="По убыванию" Margin="10" Click="Desc_Click" />
             </StackPanel>
 
-            <StackPanel Orientation="Horizontal" Background="#00FA9A">
+            <StackPanel Orientation="Horizontal" Background="#00FFFF">
                 <TextBlock Text="Фильтрация по типу товара" Margin="10"/>
                 <ComboBox Name="ListCategory" Margin="10" SelectionChanged="ListCategory_SelectionChanged"/>
             

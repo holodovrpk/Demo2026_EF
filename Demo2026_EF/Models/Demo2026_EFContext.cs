@@ -23,13 +23,16 @@ namespace Demo2026_EF.Models
         // Таблица пунктов выдачи
         public DbSet<Punkt> Punkt { get; set; }
 
+        //Таблица статусов
+        public DbSet<Status> Status { get; set; }
+
         // Настройка подключения к базе данных
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             // Строка подключения к SQL Server
             optionsBuilder.UseSqlServer(
-                @"Server=NEXTOUCH313\SQLEXPRESS;
-                  Database=Demo2026;
+                @"Server=(localdb)\mssqllocaldb;
+                  Database=Demo2026v5;
                   Trusted_Connection=True;
                   TrustServerCertificate=True;");
         }

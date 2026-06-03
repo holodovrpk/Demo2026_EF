@@ -24,7 +24,7 @@ namespace Demo2026_EF
     public partial class OrderWindow : Window
     {
         // Контекст базы данных
-        Demo2026_EFContext db = new Demo2026_EFContext();
+        Demo2026_EFContext db = new Demo2026_EFContext(); 
 
         // Коллекция заказов для привязки к списку (обновляет UI автоматически)
         ObservableCollection<Order> orders = new ObservableCollection<Order>();
@@ -35,7 +35,7 @@ namespace Demo2026_EF
 
             // Загружаем заказы из БД и сразу подтягиваем связанные данные (пункт выдачи)
             // Include нужен, чтобы o.Punkt был загружен вместе с заказом
-            db.Orders.Include(o => o.Punkt).Load();
+            db.Orders.Include(o => o.Punkt).Include(o=>o.Status).Load();
 
             // Берём локальные данные EF (кэш) и превращаем в ObservableCollection
             orders = db.Orders.Local.ToObservableCollection();
@@ -65,6 +65,7 @@ namespace Demo2026_EF
             w.ListUser.ItemsSource = db.Users.ToList();
             w.ListPunkt.ItemsSource = db.Punkt.ToList();
             w.ListProduct.ItemsSource = db.Products.ToList();
+            w.ListStatus.ItemsSource = db.Status.ToList();
 
             // Передаём объект заказа в DataContext (для привязки полей в XAML)
             w.DataContext = o;
@@ -84,7 +85,7 @@ namespace Demo2026_EF
         private void StackPanel_MouseDown(object sender, MouseButtonEventArgs e)
         {
             // Ограничение прав: менеджер не может редактировать заказы (по вашей логике)
-            if (LoginUser.role == "Менеджер")
+            if (LoginUser.role != "Администратор")
                 return;
 
             // Получаем заказ из DataContext элемента, по которому кликнули
@@ -97,6 +98,7 @@ namespace Demo2026_EF
                 w.ListUser.ItemsSource = db.Users.ToList();
                 w.ListPunkt.ItemsSource = db.Punkt.ToList();
                 w.ListProduct.ItemsSource = db.Products.ToList();
+                w.ListStatus.ItemsSource = db.Status.ToList();
 
                 // Передаём выбранный заказ в окно
                 w.DataContext = o;
@@ -106,6 +108,32 @@ namespace Demo2026_EF
 
                 // Сохраняем изменения после закрытия окна
                 db.SaveChanges();
+            }
+        }
+
+        private void Del_Click(object sender, RoutedEventArgs e)
+        {
+            // Ограничение прав: клиент и менеджер  и гость не могут удалять товар
+            if (LoginUser.role != "Администратор")
+                return;
+
+            // Пытаемся получить товар из DataContext элемента, по которому кликнули
+            if ((sender as Button).DataContext is Order o)
+            {
+                MessageBoxResult result = MessageBox.Show("Удалить заказ?",
+                    "Удаление", MessageBoxButton.YesNo, MessageBoxImage.Question);
+
+                if (result == MessageBoxResult.Yes)
+                {
+                   
+                        orders.Remove(o);
+                        db.SaveChanges();
+                        MessageBox.Show("Удаление выпонено!");
+                       
+        
+
+                }
+
             }
         }
     }
